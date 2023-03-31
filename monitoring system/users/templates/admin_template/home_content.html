@@ -1,0 +1,162 @@
+{% extends 'admin_template/base_template.html' %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+  <div class="container-fluid">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+      <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-info">
+          <div class="inner">
+            <h3>{{ all_user_count }}</h3>
+
+            <p>Total Users</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-stats-bars"></i>
+          </div>
+          <a href="{% url 'manage_user' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+      <!-- ./col -->
+      <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-danger">
+          <div class="inner">
+            <h3>{{ staff_count }}</h3>
+
+            <p>Pending Applications</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-stats-bars"></i>
+          </div>
+          <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+      <!-- ./col -->
+      
+      <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-warning">
+          <div class="inner">
+            <h3>{{ course_count }}</h3>
+
+            <p>Occupancy Rating</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-stats-bars"></i>
+          </div>
+          <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+      <!-- ./col -->
+      <div class="col-lg-3 col-6">
+        <!-- small box -->
+        <div class="small-box bg-success">
+          <div class="inner">
+            <h3>{{ subject_count }}</h3>
+
+            <p>Total Houses</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-stats-bars"></i>
+          </div>
+          <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+      </div>
+      <!-- ./col -->
+      
+    </div>
+        </div>
+
+  <!-- FOR LATEST ADDED USERS  -->
+  <div class="border" style="border-radius: 15px;">
+    <div class="card-header bg-dark align-items-center">
+          <h5 class="mb-0">Latest Added Users</h5>
+    </div>
+    <div class="card-body table-responsive p-0">
+      <table class="table table-hover text-nowrap">
+      <thead class="small text-uppercase bg-body bg-success text-muted">
+          <tr>
+              <th>ID</th><!-- 1 -->
+              <th>Profile Pic</th><!-- 2 -->
+              <th style="max-width: 500px;">Full Name</th><!-- 3 -->
+              <th>Username</th><!-- 4 -->
+              <th>Email</th><!-- 5 -->
+              <th>Date Joined</th><!-- 22 -->
+              <th>Action</th><!-- 23 -->
+          </tr>
+      </thead>
+      <tbody>
+          {% for user in users %}
+          <tr>
+
+          <td>{{ user.admin.id }}</td><!-- 1 -->
+          <td> <img src="{{ user.profile_pic }}" style="width: 100px; height: 100px;" /> </td><!-- 2 -->
+          <td style="width: 500px;">{{ user.admin.last_name }}, {{ user.admin.first_name }} {{ user.middle_name }}</td><!-- 3 -->
+          <td>{{ user.admin.username }}</td><!-- 4 -->
+          <td>{{ user.admin.email }}</td><!-- 5 -->
+          <td>{{ user.admin.date_joined }}</td><!-- 23 -->
+          <td>
+              <a href="{% url 'edit_user' user.admin.id %}" class="btn btn-success">Edit</a> 
+              <a href="{% url 'delete_user' user.admin.id %}" class="btn btn-danger">Delete</a>
+          </td>
+          </tr>
+          {% endfor %}
+          
+      </tbody>
+      </table>
+  </div>
+  </div><br>
+
+  <!-- FOR LATEST ADDED APPLICATIONS  -->
+  <div class="border" style="border-radius: 15px;">
+    <div class="card-header bg-dark align-items-center">
+          <h5 class="mb-0">Latest Transactions</h5>
+          <p class="mb-0 small text-muted">1 Pending</p>
+    </div>
+      <div class="table-responsive">
+      <table class="table mb-0">
+        <thead class="small text-uppercase bg-body bg-success text-muted">
+              <tr>
+                  <th>Transaction ID</th>
+                  <th>Date</th>
+                  <th>Name</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+              </tr>
+      </thead>
+      <tbody>
+              <tr class="align-middle">
+                  <td>
+                  #57473829
+                  </td>
+                  <td>13 Sep, 2021</td>
+                  <td>Renee Sims</td>
+      <td>
+          <div class="d-flex align-items-center">
+              <span><i class="fa fa-arrow-up" aria-hidden="true"></i></span>
+              <span>$145</span>
+          </div>
+      </td>
+                  <td>
+                  <span class="badge fs-6 fw-normal bg-tint-success text-success">Completed</span>
+                  </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+    
+
+  {% endblock main_content %}
+
+  {% block custom_js %}
+
+  {% endblock custom_js %}

@@ -1,0 +1,80 @@
+{% extends 'admin_template/base_template.html' %}
+
+{% block page_title %}
+    Manage User
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<a class="btn btn-primary" href="{% url 'add_user' %}" role="button" style="margin-left: 20px;">+ Add User</a> <br/>&nbsp;
+<!-- FOR ALL USERS  -->
+<div class="border" style="border-radius: 15px; margin-left: 20px; margin-right: 20px;">
+    <div class="card-header bg-dark align-items-center">
+          <h5 class="mb-0">All Users</h5>
+    </div>
+    <div class="card-body table-responsive p-0">
+      <table class="table table-hover text-nowrap">
+      <thead class="small text-uppercase bg-body bg-success text-muted">
+          <tr>
+            <th>ID</th><!-- 1 -->
+            <th>Profile Pic</th><!-- 2 -->
+            <th style="max-width: 500px;">Full Name</th><!-- 3 -->
+            <th>Username</th><!-- 4 -->
+            <th>Email</th><!-- 5 -->
+            <th>House Type</th><!-- 6 -->
+            <th>College/Department</th><!-- 7 -->
+            <th>Office</th><!-- 8-->
+            <th>Job</th><!-- 9 -->
+            <th>Gender</th><!-- 10 -->
+            <th>Marital Status</th><!-- 11 -->
+            <th>Salary Grade</th><!-- 12 -->
+            <th>Contact Number</th><!-- 13 -->
+            <th>Country</th><!-- 14 -->
+            <th>Nationality</th><!-- 15 -->
+            <th>Hometown</th><!-- 16 -->
+            <th>Current Address</th><!-- 17 -->
+            <th>Last Login</th><!-- 21 -->
+            <th>Date Joined</th><!-- 22 -->
+            <th>Action</th><!-- 23 -->
+            <th>ID</th><!-- 24 -->
+          </tr>
+      </thead>
+      <tbody>
+          {% for user in users %}
+          <tr>
+
+          <td>{{ user.admin.id }}</td><!-- 1 -->
+          <td> <img src="{{ user.profile_pic }}" style="width: 100px;" /> </td><!-- 2 -->
+          <td style="max-width: 500px;">{{ user.admin.last_name }}, {{ user.admin.first_name }} {{ user.middle_name }}</td><!-- 3 -->
+          <td>{{ user.admin.username }}</td><!-- 4 -->
+          <td>{{ user.admin.email }}</td><!-- 5 -->
+          <td>{{ user.house_type }}</td><!-- 6 -->
+          <td>{{ user.college }}</td><!-- 8 -->
+          <td>{{ user.office }}</td><!-- 9 -->
+          <td>{{ user.job }}</td><!-- 10 -->
+          <td>{{ user.gender }}</td><!-- 11 -->
+          <td>{{ user.marital_status }}</td><!-- 12 -->
+          <td>{{ user.salary }}</td><!-- 13 -->
+          <td>{{ user.phone_number }}</td><!-- 14 -->
+          <td>{{ user.country }}</td><!-- 15 -->
+          <td>{{ user.nationality }}</td><!-- 16 -->
+          <td>{{ user.hometown }}</td><!-- 17 -->
+          <td>{{ user.address }}</td><!-- 7 -->
+          <td>{{ user.admin.last_login }}</td><!-- 22 -->
+          <td>{{ user.admin.date_joined }}</td><!-- 23 -->
+          <td>
+              <a href="{% url 'edit_user' user.admin.id %}" class="btn btn-success">Edit</a> 
+              <a href="{% url 'delete_user' user.admin.id %}" class="btn btn-danger">Delete</a>
+          </td>
+          <td>{{ user.admin.id }}</td><!-- 1 -->
+          </tr>
+          {% endfor %}
+          
+      </tbody>
+      </table>
+  </div>
+  </div>
+
+  {% endblock main_content %}
